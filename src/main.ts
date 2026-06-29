@@ -9,11 +9,6 @@ import { recordPositions } from "./core/trails";
 
 const ctx = setupCanvas();
 
-fetchAircraft().then((planes) => {
-  console.log(`${planes.length} planes are near`);
-  console.log(planes);
-});
-
 async function render() {
   const planes = await fetchAircraft();
   recordPositions(planes);

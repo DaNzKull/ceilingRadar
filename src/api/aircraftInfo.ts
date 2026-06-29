@@ -19,7 +19,9 @@ export function getAircraftType(hex: string): AircraftType | null {
   if (cache.has(hex)) return cache.get(hex) ?? null;
 
   cache.set(hex, null);
-  fetchAircraftInfo(hex).then((info) => cache.set(hex, info));
+  fetchAircraftInfo(hex)
+    .then((info) => cache.set(hex, info))
+    .catch(() => cache.delete(hex));
 
   return null;
 }

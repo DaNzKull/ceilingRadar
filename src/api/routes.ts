@@ -7,7 +7,7 @@ export async function fetchRoute(callsign: string): Promise<Route | null> {
   if (!response.ok) return null;
 
   const data: AdsbdbResponse = await response.json();
-  const fr = data.response.flightroute;
+  const fr = data.response?.flightroute;
 
   const origin = fr?.origin?.municipality ?? fr?.origin?.iata_code;
   const destination =
@@ -29,7 +29,9 @@ export function getRoute(callsign: string): Route | null {
   }
 
   cache.set(callsign, null);
-  fetchRoute(callsign).then((route) => cache.set(callsign, route));
+  fetchRoute(callsign)
+    .then((route) => cache.set(callsign, route))
+    .catch(() => {});
 
   return null;
 }
