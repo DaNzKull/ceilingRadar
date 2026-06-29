@@ -24,7 +24,7 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build -- --base=/ceilingRadar/
+      - run: npx tsc && npx vite build --base=/ceilingRadar/
 
       - uses: actions/upload-pages-artifact@v3
         with:
