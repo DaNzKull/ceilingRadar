@@ -10,14 +10,23 @@ export function drawTrail(
   const trail = getTrail(plane.icao);
   if (trail.length < 2) return;
 
-  ctx.beginPath();
-  trail.forEach((pos, i) => {
-    const p = toScreen(pos.lat, pos.lon, ctx.canvas.width, ctx.canvas.height);
-    if (i === 0) ctx.moveTo(p.x, p.y);
-    else ctx.lineTo(p.x, p.y);
-  });
-
   ctx.strokeStyle = altitudeColor(plane.altitude);
   ctx.lineWidth = 1;
-  ctx.stroke();
+
+  trail.forEach((pos, i) => {
+    if (i === 0) return;
+    const from = toScreen(
+      trail[i - 1].lat,
+      trail[i - 1].lon,
+      ctx.canvas.width,
+      ctx.canvas.height,
+    );
+    const to = toScreen(pos.lat, pos.lon, ctx.canvas.width, ctx.canvas.height);
+    ctx.globalAlpha = i / trail.length;
+    ctx.beginPath();
+    ctx.moveTo(from.x, from.y);
+    ctx.lineTo(to.x, to.y);
+    ctx.stroke();
+  });
+  ctx.globalAlpha = 1;
 }

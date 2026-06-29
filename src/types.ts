@@ -7,12 +7,15 @@ export interface Aircraft {
   aircraftType?: string;
   altitude: number;
   groundSpeed: number;
+  category?: string;
 }
 
 export interface AircraftType {
   manufacturer: string;
   model: string;
 }
+
+export type AircraftIconType = "jet" | "helicopter" | "prop";
 
 export interface Route {
   origin?: string;

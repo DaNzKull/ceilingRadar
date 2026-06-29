@@ -32,5 +32,6 @@ export async function fetchAircraft(): Promise<Aircraft[]> {
       altitude: plane.alt_baro,
       groundSpeed: plane.gs ?? 0,
       aircraftType: plane.t,
+      category: plane.category,
     }));
 }

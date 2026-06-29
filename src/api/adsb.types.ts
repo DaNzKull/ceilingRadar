@@ -7,6 +7,7 @@ export interface RawAircraft {
   alt_baro?: number | "ground";
   gs?: number;
   t?: string;
+  category?: string;
 }
 
 export interface AdsbResponse {
