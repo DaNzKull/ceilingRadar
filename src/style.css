@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+  background: #000000;
+  overflow: hidden;
+}
+
+#radar {
+  display: block;
+}
